@@ -30,7 +30,7 @@ export default function CampaignPage() {
 
 	const { data: description } = useReadContract({
 		contract,
-		method: "function desription() view returns (string)",
+		method: "function description() view returns (string)",
 		params: []
 	});
 
@@ -77,7 +77,6 @@ export default function CampaignPage() {
 		params: []
 	});
 
-
 	const { data: status } = useReadContract({
 		contract,
 		method: "function state() view returns (uint8)",
@@ -88,7 +87,7 @@ export default function CampaignPage() {
 		<div className="mx-auto max-w-7xl px-2 mt-4 sm:px-6 lg:px-8">
 				<div className="flex flex-row justify-between items-center">
 						{!isLoadingName && (
-								<p className="text-4xl font-semibold">{name}</p>
+								<p className="text-4xl font-semibold text-white">{name}</p>
 						)}
 						{owner === account?.address && (
 								<div className="flex flex-row">
@@ -108,18 +107,18 @@ export default function CampaignPage() {
 						)}
 				</div>
 				<div className="my-4">
-						<p className="text-lg font-semibold">Description:</p>
-						<p>{description}</p>
+						<p className="text-lg font-semibold text-gray-500">Description:</p>
+						<p className="text-white">{description}</p>
 				</div>
 				<div className="mb-4">
-						<p className="text-lg font-semibold">Deadline</p>
+						<p className="text-lg font-semibold text-gray-500">Deadline</p>
 						{!isLoadingDeadline && (
-								<p>{deadlineDate.toDateString()}</p>
+								<p className="text-white">{deadlineDate.toDateString()}</p>
 						)}
 				</div>
 				{!isLoadingBalance && (
 						<div className="mb-4">
-								<p className="text-lg font-semibold">Campaign Goal: ${goal?.toString()}</p>
+								<p className="text-lg font-semibold text-gray-500">Campaign Goal: <span className="text-white">${goal?.toString()}</span></p>
 								<div className="relative w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
 										<div className="h-6 bg-blue-600 rounded-full dark:bg-blue-500 text-right" style={{ width: `${balancePercentage?.toString()}%`}}>
 												<p className="text-white dark:text-white text-xs p-1">${balance?.toString()}</p>
@@ -132,7 +131,7 @@ export default function CampaignPage() {
 						
 				)}
 				<div>
-						<p className="text-lg font-semibold">Tiers:</p>
+						<p className="text-lg font-semibold text-gray-500">Tiers:</p>
 						<div className="grid grid-cols-3 gap-4">
 								{isLoadingTiers ? (
 										<p >Loading...</p>
@@ -156,7 +155,7 @@ export default function CampaignPage() {
 								{isEditing && (
 										// Add a button card with text centered in the middle
 										<button
-												className="max-w-sm flex flex-col text-center justify-center items-center font-semibold p-6 bg-blue-500 text-white border border-slate-100 rounded-lg shadow"
+												className="max-w-sm flex flex-col text-center justify-center items-center font-semibold p-6 bg-blue-500 text-white rounded-lg shadow"
 												onClick={() => setIsModalOpen(true)}
 										>+ Add Tier</button>
 								)}
